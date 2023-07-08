@@ -23,7 +23,6 @@ class Opencv < Formula
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
-  depends_on "ceres-solver"
   depends_on "eigen"
   depends_on "ffmpeg"
   depends_on "glog"
@@ -54,7 +53,6 @@ class Opencv < Formula
   end
 
   def install
-    resource("contrib").stage buildpath/"opencv_contrib"
 
     # Avoid Accelerate.framework
     ENV["OpenBLAS_HOME"] = Formula["openblas"].opt_prefix
@@ -83,25 +81,24 @@ class Opencv < Formula
       -DBUILD_ZLIB=OFF
       -DBUILD_opencv_hdf=OFF
       -DBUILD_opencv_java=OFF
-      -DBUILD_opencv_text=ON
-      -DOPENCV_ENABLE_NONFREE=ON
-      -DOPENCV_EXTRA_MODULES_PATH=#{buildpath}/opencv_contrib/modules
+      -DBUILD_opencv_text=OFF
+      -DOPENCV_ENABLE_NONFREE=OFF
       -DOPENCV_GENERATE_PKGCONFIG=ON
       -DPROTOBUF_UPDATE_FILES=ON
       -DWITH_1394=OFF
       -DWITH_CUDA=OFF
-      -DWITH_EIGEN=ON
+      -DWITH_EIGEN=OFF
       -DWITH_FFMPEG=ON
       -DWITH_GPHOTO2=OFF
       -DWITH_GSTREAMER=OFF
       -DWITH_JASPER=OFF
-      -DWITH_OPENEXR=ON
+      -DWITH_OPENEXR=OFF
       -DWITH_OPENGL=OFF
       -DWITH_QT=OFF
       -DWITH_TBB=ON
       -DWITH_VTK=OFF
       -DBUILD_opencv_python2=OFF
-      -DBUILD_opencv_python3=ON
+      -DBUILD_opencv_python3=OFF
       -DPYTHON3_EXECUTABLE=#{which(python3)}
     ]
 
