@@ -1,8 +1,8 @@
 class Fasttrack < Formula
   desc "FastTrack is a cross-platform application designed to track multiple objects in video recording. "
   homepage "https://fasttrack.sh"
-  url "https://github.com/FastTrackOrg/FastTrack/archive/refs/tags/v6.3.1.tar.gz"
-  sha256 "40864090be3647672eba2e35b41f952e17005cbde7d80fa890a7025411acdce9"
+  url "https://github.com/FastTrackOrg/FastTrack/archive/refs/tags/v6.3.2.tar.gz"
+  sha256 "ef542f87e7318c51fae0c530535b029be6d339faab4e37091385b9b082fe8fa6"
   license " GPL-3.0"
   revision 1
 
