@@ -1,10 +1,10 @@
 class Opencv < Formula
   desc "Open source computer vision library"
   homepage "https://opencv.org/"
-  url "https://github.com/opencv/opencv/archive/refs/tags/4.8.0.tar.gz"
-  sha256 "cbf47ecc336d2bff36b0dcd7d6c179a9bb59e805136af6b9670ca944aef889bd"
+  url "https://github.com/opencv/opencv/archive/refs/tags/4.8.1.tar.gz"
+  sha256 "62f650467a60a38794d681ae7e66e3e8cfba38f445e0bf87867e2f2cdc8be9d5"
   license "Apache-2.0"
-  revision 1
+  revision 4
 
   livecheck do
     url :stable
@@ -12,13 +12,13 @@ class Opencv < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "3237e8ad88aa8d96b0a8a46430dc4e0a0b2540817ee23a2c2e71f9e105895e23"
-    sha256 arm64_monterey: "b302e227dee1ce5e4cdbf36debf29be9383623d71c0fd55bfec8acd44bc2bea9"
-    sha256 arm64_big_sur:  "51058522588ab01e5f252dca1669c165e0701c921a59ee1bb473656728ae3218"
-    sha256 ventura:        "05d4f3e1cdf9a2147aeea87d6c20cbebb3c124c189d277881a74f218d1c36a9a"
-    sha256 monterey:       "bfc174bf69aed4fe6780d2481cbf5aba02e136e19935e27ce9bbd55054422736"
-    sha256 big_sur:        "8c96f8e85d2c2558db4f9a1e7ced99b7f2b47f1d24f277bc1d078c12cb8880ef"
-    sha256 x86_64_linux:   "a2fb888226f1041595b19bad9dd39291e44ead0bc04339001c39c93a1f05549c"
+    sha256 arm64_sonoma:   "62e12b3997a5b5cc4e6d759b61bc00b957897d60c78ce3e054da18c645ba2f4e"
+    sha256 arm64_ventura:  "0854a41759b42eea39d864c3163c5cb98d7d9d03a9a04967afddb0d22cdfb253"
+    sha256 arm64_monterey: "b9dd72019491840ba1b042903b77acae9038a2b24f044fd051594af73c62cd2e"
+    sha256 sonoma:         "49e47e92b5fbece885a26b7951cb6bc2838c65532899019e8baa5bc25bb77df9"
+    sha256 ventura:        "09fb4e92cb4accad87ff7f9fe58aa3489018e593f01b3ff5203ed63142d1f0f1"
+    sha256 monterey:       "70591c94efd9c8a63dcdb42a30ea39610e5c06e65ad1799860d738aaba790c0e"
+    sha256 x86_64_linux:   "059f42cc891983d4e315bcc5fb6a8e70d4c8defb335472797b25d13e2cdd289a"
   end
 
   depends_on "cmake" => :build
@@ -44,8 +44,8 @@ class Opencv < Formula
   fails_with gcc: "5" # ffmpeg is compiled with GCC
 
   resource "contrib" do
-    url "https://github.com/opencv/opencv_contrib/archive/refs/tags/4.8.0.tar.gz"
-    sha256 "b4aef0f25a22edcd7305df830fa926ca304ea9db65de6ccd02f6cfa5f3357dbb"
+    url "https://github.com/opencv/opencv_contrib/archive/refs/tags/4.8.1.tar.gz"
+    sha256 "0c082a0b29b3118f2a0a1856b403bb098643af7b994a0080f402a12159a99c6e"
   end
 
   def python3
