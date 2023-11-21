@@ -37,7 +37,6 @@ class Opencv < Formula
   depends_on "protobuf"
   depends_on "python@3.11"
   depends_on "tbb"
-  depends_on "webp"
 
   uses_from_macos "zlib"
 
