@@ -1,8 +1,8 @@
 class Opencv < Formula
   desc "Open source computer vision library"
   homepage "https://opencv.org/"
-  url "https://github.com/opencv/opencv/archive/refs/tags/4.8.1.tar.gz"
-  sha256 "62f650467a60a38794d681ae7e66e3e8cfba38f445e0bf87867e2f2cdc8be9d5"
+  url "https://github.com/opencv/opencv/archive/refs/tags/4.10.0.tar.gz"
+  sha256 "b2171af5be6b26f7a06b1229948bbb2bdaa74fcf5cd097e0af6378fce50a6eb9"
   license "Apache-2.0"
   revision 4
 
@@ -12,13 +12,13 @@ class Opencv < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "62e12b3997a5b5cc4e6d759b61bc00b957897d60c78ce3e054da18c645ba2f4e"
-    sha256 arm64_ventura:  "0854a41759b42eea39d864c3163c5cb98d7d9d03a9a04967afddb0d22cdfb253"
-    sha256 arm64_monterey: "b9dd72019491840ba1b042903b77acae9038a2b24f044fd051594af73c62cd2e"
-    sha256 sonoma:         "49e47e92b5fbece885a26b7951cb6bc2838c65532899019e8baa5bc25bb77df9"
-    sha256 ventura:        "09fb4e92cb4accad87ff7f9fe58aa3489018e593f01b3ff5203ed63142d1f0f1"
-    sha256 monterey:       "70591c94efd9c8a63dcdb42a30ea39610e5c06e65ad1799860d738aaba790c0e"
-    sha256 x86_64_linux:   "059f42cc891983d4e315bcc5fb6a8e70d4c8defb335472797b25d13e2cdd289a"
+    sha256 arm64_sonoma:   "087aa72ff67a7df062a9463e45f6acf646982c38ee36443b40a806f5cb1d653d"
+    sha256 arm64_ventura:  "baf32606d984f076f3e30ae3f0b200e485929e7bf49ccf256383af874084af68"
+    sha256 arm64_monterey: "4242b2999d6c39680656dfb1cad8ad91c98d96c0e5b60f0805547a5f7bef6a68"
+    sha256 sonoma:         "36fac819be67e8ea339c268818e6637e7645a5bb6aea30210435959e1be3a249"
+    sha256 ventura:        "c964dfd611d940d044247c9bb482b455f46481e11de40e38212319ebd4d29fb4"
+    sha256 monterey:       "02a9f4b1b83d67427cb02beae50b5a756ddba1658baf384fe8fd8ecc65ec5a2d"
+    sha256 x86_64_linux:   "14c66ade7d9c213182934fc9c21dea7bb3517f2a25b14d1b5965eea60c8a10fe"
   end
 
   depends_on "cmake" => :build
