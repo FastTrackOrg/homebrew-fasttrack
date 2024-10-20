@@ -1,8 +1,8 @@
 class Opencv < Formula
   desc "Open source computer vision library"
   homepage "https://opencv.org/"
-  url "https://github.com/opencv/opencv/archive/refs/tags/4.8.1.tar.gz"
-  sha256 "62f650467a60a38794d681ae7e66e3e8cfba38f445e0bf87867e2f2cdc8be9d5"
+  url "https://github.com/FastTrackOrg/opencv/archive/refs/tags/v4.10.0.tar.gz"
+  sha256 "38fa471707522ab4b36ef761c95a322a09bbf397fc3860516294664d6392a1a5"
   license "Apache-2.0"
   revision 4
 
@@ -12,43 +12,45 @@ class Opencv < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "62e12b3997a5b5cc4e6d759b61bc00b957897d60c78ce3e054da18c645ba2f4e"
-    sha256 arm64_ventura:  "0854a41759b42eea39d864c3163c5cb98d7d9d03a9a04967afddb0d22cdfb253"
-    sha256 arm64_monterey: "b9dd72019491840ba1b042903b77acae9038a2b24f044fd051594af73c62cd2e"
-    sha256 sonoma:         "49e47e92b5fbece885a26b7951cb6bc2838c65532899019e8baa5bc25bb77df9"
-    sha256 ventura:        "09fb4e92cb4accad87ff7f9fe58aa3489018e593f01b3ff5203ed63142d1f0f1"
-    sha256 monterey:       "70591c94efd9c8a63dcdb42a30ea39610e5c06e65ad1799860d738aaba790c0e"
-    sha256 x86_64_linux:   "059f42cc891983d4e315bcc5fb6a8e70d4c8defb335472797b25d13e2cdd289a"
+    sha256 arm64_sonoma:  "3b056a2b5fe47fbad4128abfe9ca30e207116359fbad459a1492d6eb6ba72c74"
+    sha256 arm64_ventura: "5bfc81f73ec3a3c66fd8bdf79f9d95f7d5d3315120cc29216f6ccbb11b9ffa34"
+    sha256 sonoma:        "41f609f5ed694a68d6771b11fa9dad0ba985b1400151845d2d7deb89bf0178b6"
+    sha256 ventura:       "aae4e6d2de588e94c26471d1235ee73057228e18397b1076cf98bb12cd832602"
+    sha256 x86_64_linux:  "f8ba815fc2d4bb80709b5a3bd7476cea23d30b09cc5cfe75ad8e72119e779fc7"
   end
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
+  depends_on "python-setuptools" => :build
+  depends_on "abseil"
+  depends_on "ceres-solver"
   depends_on "eigen"
   depends_on "ffmpeg"
+  depends_on "freetype"
+  depends_on "gflags"
   depends_on "glog"
   depends_on "harfbuzz"
   depends_on "jpeg-turbo"
+  depends_on "jsoncpp"
   depends_on "libpng"
   depends_on "libtiff"
   depends_on "numpy"
   depends_on "openblas"
-  depends_on "openexr"
   depends_on "openjpeg"
   depends_on "protobuf"
-  depends_on "python@3.11"
-  depends_on "tbb"
+  depends_on "python@3.12"
 
   uses_from_macos "zlib"
 
   fails_with gcc: "5" # ffmpeg is compiled with GCC
 
   resource "contrib" do
-    url "https://github.com/opencv/opencv_contrib/archive/refs/tags/4.8.1.tar.gz"
-    sha256 "0c082a0b29b3118f2a0a1856b403bb098643af7b994a0080f402a12159a99c6e"
+    url "https://github.com/opencv/opencv_contrib/archive/refs/tags/4.10.0.tar.gz"
+    sha256 "65597f8fb8dc2b876c1b45b928bbcc5f772ddbaf97539bf1b737623d0604cba1"
   end
 
   def python3
-    "python3.11"
+    "python3.12"
   end
 
   def install
@@ -60,11 +62,11 @@ class Opencv < Formula
     ENV.delete("PYTHONPATH")
 
     # Remove bundled libraries to make sure formula dependencies are used
-    libdirs = %w[ffmpeg libjasper libjpeg libjpeg-turbo libpng libtiff libwebp openexr openjpeg protobuf tbb zlib]
-    libdirs.each { |l| (buildpath/"3rdparty"/l).rmtree }
+    libdirs = %w[ffmpeg libjasper libjpeg libjpeg-turbo libpng libtiff libwebp openexr openjpeg protobuf zlib]
+    libdirs.each { |l| rm_r(buildpath/"3rdparty"/l) }
 
     args = %W[
-      -DCMAKE_CXX_STANDARD=11
+      -DCMAKE_CXX_STANDARD=17
       -DCMAKE_OSX_DEPLOYMENT_TARGET=
       -DBUILD_JASPER=OFF
       -DBUILD_JPEG=OFF
@@ -93,12 +95,12 @@ class Opencv < Formula
       -DWITH_JASPER=OFF
       -DWITH_OPENEXR=OFF
       -DWITH_OPENGL=OFF
+      -DWITH_OPENVINO=OFF
       -DWITH_QT=OFF
-      -DWITH_TBB=ON
+      -DWITH_TBB=OFF
       -DWITH_VTK=OFF
       -DBUILD_opencv_python2=OFF
       -DBUILD_opencv_python3=OFF
-      -DPYTHON3_EXECUTABLE=#{which(python3)}
     ]
 
     args += [
