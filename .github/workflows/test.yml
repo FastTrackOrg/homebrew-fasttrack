@@ -1,0 +1,22 @@
+name: Test Homebrew Formula
+
+on:
+  push:
+    branches: master
+
+jobs:
+  test-formula:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          brew tap FastTrackOrg/fasttrack
+          brew install -s --verbose fasttrack
+
+      - name: Run CLI binary to verify install
+        run: |
+          fasttrack-cli --help

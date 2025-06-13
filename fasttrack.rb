@@ -1,8 +1,8 @@
 class Fasttrack < Formula
   desc "FastTrack is a cross-platform application designed to track multiple objects in video recording. "
   homepage "https://fasttrack.sh"
-  url "https://github.com/FastTrackOrg/FastTrack/archive/refs/tags/v6.3.4.tar.gz"
-  sha256 "7ce8ca265178cb689d677b02c76ab77ba18e1a35ad59ca9d14cf11728f8ffad8"
+  url "https://github.com/FastTrackOrg/FastTrack/archive/refs/tags/v6.4.0.tar.gz"
+  sha256 "e20b1e2c1dc7ae96ce0ab2cd0eaa6c262475ad9883fd6e630882d0c23815f3db"
   license "GPL-3.0"
   revision 1
 
@@ -12,10 +12,10 @@ class Fasttrack < Formula
   depends_on "opencv"
 
   def install
-    system "qmake6", "FastTrack.pro",
-           "CONFIG+=release"
-    system "make"
-    bin.install "src/build/FastTrack.app"
-    bin.install "src/build_cli/FastTrack-cli.app/Contents/MacOS/FastTrack-cli"
+    system "cmake", "-S", ".", "-B", "build"
+    system "cmake", "--build", "build"
+    prefix.install "src/build/bin/fasttrack.app"
+    bin.write_exec_script "#{prefix}/fasttrack.app/Contents/MacOS/fasttrack"
+    bin.install "src/build/bin/fasttrack-cli.app/Contents/MacOS/fasttrack-cli"
   end
 end
