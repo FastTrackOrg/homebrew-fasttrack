@@ -4,16 +4,15 @@ class Fasttrack < Formula
   url "https://github.com/FastTrackOrg/FastTrack/archive/refs/tags/v6.4.0.tar.gz"
   sha256 "4f2de4d0ed185591722361dd21998cce489f5c97e7fe2a77c7d0e10d6193a8c3"
   license "GPL-3.0"
-  revision 3
+  revision 4
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
-  depends_on "googletest" => :build
   depends_on "qt"
   depends_on "opencv"
 
   def install
-    system "cmake", "-S", ".", "-B", "build"
+    system "cmake", "-S", ".", "-B", "build", "-DSKIP_TEST=ON"
     system "cmake", "--build", "build"
 
     libexec.install "build/bin/fasttrack.app"
