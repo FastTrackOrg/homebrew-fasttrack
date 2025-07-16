@@ -1,10 +1,10 @@
 class Fasttrack < Formula
   desc "FastTrack is a cross-platform application designed to track multiple objects in video recording. "
   homepage "https://fasttrack.sh"
-  url "https://github.com/FastTrackOrg/FastTrack/archive/refs/tags/v6.4.0.tar.gz"
-  sha256 "4f2de4d0ed185591722361dd21998cce489f5c97e7fe2a77c7d0e10d6193a8c3"
+  url "https://github.com/FastTrackOrg/FastTrack/archive/refs/tags/v6.5.0.tar.gz"
+  sha256 "a28e975709f9654063fe4cfe91b8758818724b41f68986fdd20a356476cb69c8"
   license "GPL-3.0"
-  revision 4
+  revision 1
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
@@ -16,23 +16,21 @@ class Fasttrack < Formula
     system "cmake", "--build", "build"
 
     libexec.install "build/bin/fasttrack.app"
-    (bin/"fasttrack").write <<~EOS
-      #!/bin/bash
-      open "#{libexec}/fasttrack.app"
-    EOS
 
-    bin.install "build/bin/fasttrack-cli.app/Contents/MacOS/fasttrack-cli"
+    bin.install_symlink libexec/"fasttrack.app/Contents/MacOS/fasttrack"
   end
 
   def caveats
     <<~EOS
-      To launch the FastTrack GUI:
+      🎉 FastTrack has been installed!
+
+      🖥️ To run the CLI:
+        fasttrack --cli [options]
+
+      ▶️ To launch the GUI (from Terminal):
         fasttrack
 
-      To use the command-line tool:
-        fasttrack-cli
-
-      If you want to launch the FastTrack GUI like a regular app:
+      🧩 Optional: Add FastTrack to your Applications folder:
         ln -s "#{opt_libexec}/fasttrack.app" /Applications/FastTrack.app
     EOS
   end

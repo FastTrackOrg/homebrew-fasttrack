@@ -26,7 +26,7 @@ jobs:
 
       - name: Run CLI binary to verify install
         run: |
-          fasttrack-cli --help
+          fasttrack --cli --help
 
       - name: Symlink
         run: |
